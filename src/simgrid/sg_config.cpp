@@ -389,3 +389,11 @@ void sg_config_finalize()
   simgrid::config::finalize();
   _sg_cfg_init_status = 0;
 }
+
+const char* api_url()
+{
+  const char* url = "http://127.0.0.1:5000";
+  char* result = new char[strlen(url) + 1]; // Allocate memory for the result
+  strcpy(result, url); // Copy the string to the result
+  return result;
+}
