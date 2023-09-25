@@ -14,5 +14,6 @@ XBT_PUBLIC_DATA int _sg_cfg_init_status;
 
 XBT_PUBLIC void sg_config_init(int* argc, char** argv);
 XBT_PUBLIC void sg_config_finalize();
+XBT_PUBLIC const char* api_url();
 
 #endif

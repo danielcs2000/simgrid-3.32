@@ -17,24 +17,24 @@ class EntityValue;
 class TIData;
 
 enum class PajeEventType : unsigned int {
-  DefineContainerType,
-  DefineVariableType,
-  DefineStateType,
-  DefineEventType,
-  DefineLinkType,
-  DefineEntityValue,
-  CreateContainer,
-  DestroyContainer,
-  SetVariable,
-  AddVariable,
-  SubVariable,
-  SetState,
-  PushState,
-  PopState,
-  ResetState,
-  StartLink,
-  EndLink,
-  NewEvent
+  DefineContainerType, // 0
+  DefineVariableType, // 1
+  DefineStateType, // 2
+  DefineEventType, // 3
+  DefineLinkType, // 4
+  DefineEntityValue, // 5
+  CreateContainer, // 6
+  DestroyContainer, // 7
+  SetVariable, // 8
+  AddVariable, // 9
+  SubVariable, // 10
+  SetState, // 11
+  PushState, // 12
+  PopState, // 13
+  ResetState, // 14
+  StartLink, // 15
+  EndLink, // 16
+  NewEvent // 17
 };
 
 inline std::ostream& operator<<(std::ostream& os, PajeEventType event)
@@ -63,6 +63,7 @@ public:
   Type* get_type() const { return type_; }
 
   virtual void print() = 0;
+  virtual std::string get_print() = 0;
   void insert_into_buffer();
 };
 
@@ -75,6 +76,11 @@ public:
   {
   }
   void print() override { stream_ << " " << value_; }
+  std::string get_print() override { 
+    std::string result = " ";
+    result += std::to_string(value_);
+    return result;
+  };
 };
 
 class StateEvent : public PajeEvent {
@@ -93,6 +99,7 @@ public:
   ~StateEvent() override { on_destruction(*this); }
   bool has_extra() const { return extra_ != nullptr; }
   void print() override;
+  std::string get_print() override;
 };
 
 class LinkEvent : public PajeEvent {
@@ -112,6 +119,7 @@ public:
   {
   }
   void print() override;
+  std::string get_print() override;
 };
 
 class NewEvent : public PajeEvent {
@@ -123,6 +131,7 @@ public:
   {
   }
   void print() override;
+  std::string get_print() override;
 };
 } // namespace simgrid::instr
 #endif
