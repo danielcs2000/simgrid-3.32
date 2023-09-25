@@ -12,6 +12,7 @@
 #include <simgrid/s4u/Host.hpp>
 #include <simgrid/s4u/VirtualMachine.hpp>
 #include <xbt/graph.h>
+#include "simgrid/sg_config.hpp"
 
 #include "src/instr/instr_private.hpp"
 #include "src/kernel/resource/CpuImpl.hpp"
@@ -19,6 +20,7 @@
 #include "src/surf/surf_interface.hpp"
 
 #include <fstream>
+#include <curl/curl.h>
 
 XBT_LOG_NEW_DEFAULT_SUBCATEGORY(instr_routing, instr, "Tracing platform hierarchy");
 
@@ -355,6 +357,17 @@ static void on_action_state_change(kernel::resource::Action const& action,
 {
   auto n = static_cast<unsigned>(action.get_variable()->get_number_of_constraint());
 
+  // Send end link data
+  CURL *curl;
+  CURLcode res;
+  curl = curl_easy_init();
+  if (!curl) {
+      std::cerr << "Curl initialization failed." << std::endl;
+      return;
+  }
+  const char *url = api_url();
+  curl_easy_setopt(curl, CURLOPT_URL, url);
+
   for (unsigned i = 0; i < n; i++) {
     double value = action.get_rate() * action.get_variable()->get_constraint_weight(i);
     /* Beware of composite actions: ptasks put links and cpus together. Extra pb: we cannot dynamic_cast from void* */
@@ -363,10 +376,40 @@ static void on_action_state_change(kernel::resource::Action const& action,
       resource_set_utilization("HOST", "speed_used", cpu->get_cname(), action.get_category(), value,
                                action.get_last_update(), simgrid_get_clock() - action.get_last_update());
 
-    if (const auto* link = dynamic_cast<kernel::resource::StandardLinkImpl*>(resource))
+    if (const auto* link = dynamic_cast<kernel::resource::StandardLinkImpl*>(resource)) {
+
+      std::string simgrid_timestamp = std::to_string(simgrid_get_clock());
+      std::string value_str = std::to_string(value);
+      std::string link_name(link->get_cname());
+
+      simgrid_timestamp = curl_easy_escape(curl, simgrid_timestamp.c_str(), simgrid_timestamp.length());
+      value_str = curl_easy_escape(curl, value_str.c_str(), value_str.length());
+
+      std::string encoded_data = "timestamp=" + simgrid_timestamp + "&" + "value=" + value_str + "&" + "link_name=" + link_name + "&" + "event_type=end_link";
+      curl_easy_setopt(curl, CURLOPT_POSTFIELDS, encoded_data.c_str());
+      res = curl_easy_perform(curl);
+      if (res != CURLE_OK) {
+        std::cerr << "Curl request failed: " << curl_easy_strerror(res) << std::endl;
+      } else {
+        std::cout << "HTTP POST request sent successfully." << std::endl;
+      }
+
+
+      std::cout << "-------------------------------------------------------------------------------" << std::endl;
+      std::cout<< "[LINK CHANGED] " << std::endl;
+      std::cout << "link name: " << link->get_cname() << std::endl ;
+      std::cout << "category: " <<  action.get_category() << std::endl;
+      std::cout << "value: "<< value << std::endl;
+      std::cout << "action start updated: " << action.get_start_time() << std::endl;
+      std::cout << "action last updated: " << action.get_last_update() << std::endl;
+      std::cout << "simgrid clock: " << simgrid_get_clock() << std::endl; 
+      std::cout << "difference clock: " << simgrid_get_clock() - action.get_last_update() << std::endl;
+      std::cout << "-------------------------------------------------------------------------------" << std::endl;
       resource_set_utilization("LINK", "bandwidth_used", link->get_cname(), action.get_category(), value,
                                action.get_last_update(), simgrid_get_clock() - action.get_last_update());
+    }
   }
+  curl_easy_cleanup(curl);
 }
 
 static void on_platform_created()

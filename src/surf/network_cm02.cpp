@@ -13,9 +13,12 @@
 #include "src/kernel/resource/WifiLinkImpl.hpp"
 #include "src/kernel/resource/profile/Event.hpp"
 #include "src/surf/surf_interface.hpp"
+#include "simgrid/sg_config.hpp"
 
 #include <algorithm>
 #include <numeric>
+#include <iostream>
+#include <curl/curl.h>
 
 XBT_LOG_EXTERNAL_DEFAULT_CATEGORY(res_network);
 
@@ -576,6 +579,59 @@ void NetworkCm02Action::update_remains_lazy(double now)
 
   set_last_update();
   set_last_value(get_rate());
+
+  // Send start link data
+  CURL *curl;
+  CURLcode res;
+  curl = curl_easy_init();
+  if (!curl) {
+      std::cerr << "Curl initialization failed." << std::endl;
+      return;
+  }
+  const char *url = api_url(); // Replace with your target URL
+  curl_easy_setopt(curl, CURLOPT_URL, url);
+
+  
+  auto n = static_cast<unsigned>(get_variable()->get_number_of_constraint());
+  for (unsigned i = 0; i < n; i++) {
+    double value = get_rate() * get_variable()->get_constraint_weight(i);
+    kernel::resource::Resource* resource = get_variable()->get_constraint(i)->get_id();
+
+    if (const auto* link = dynamic_cast<kernel::resource::StandardLinkImpl*>(resource)) {
+
+      std::string simgrid_timestamp = std::to_string(simgrid_get_clock());
+      std::string value_str = std::to_string(value);
+      std::string link_name(link->get_cname());
+      simgrid_timestamp = curl_easy_escape(curl, simgrid_timestamp.c_str(), simgrid_timestamp.length());
+      value_str = curl_easy_escape(curl, value_str.c_str(), value_str.length());
+      
+      std::string encoded_data = "timestamp=" + simgrid_timestamp + "&" + "value=" + value_str + "&" + "link_name=" + link_name + "&" + "event_type=start_link";
+      curl_easy_setopt(curl, CURLOPT_POSTFIELDS, encoded_data.c_str());
+      res = curl_easy_perform(curl);
+      if (res != CURLE_OK) {
+        std::cerr << "Curl request failed: " << curl_easy_strerror(res) << std::endl;
+      } else {
+        std::cout << "HTTP POST request sent successfully." << std::endl;
+      }
+
+      std::cout << "-------------------------------------------------------------------------------" << std::endl;
+      std::cout<< "[ACTION LAST UPDATED] " << std::endl;
+      std::cout << "link name: " << link->get_cname() << std::endl ;
+      std::cout << "category: " <<  get_category() << std::endl;
+      std::cout << "value: "<< value << std::endl;
+      std::cout << "action start updated: " << get_start_time() << std::endl;
+      std::cout << "action last updated: " << get_last_update() << std::endl;
+      std::cout << "simgrid clock: " << simgrid_get_clock() << std::endl; 
+      std::cout << "difference clock: " << simgrid_get_clock() - get_last_update() << std::endl;
+      std::cout << "-------------------------------------------------------------------------------" << std::endl;
+    }
+  }
+  curl_easy_cleanup(curl);
+
+  std::cout << "--------------------------------------------------------------" << std::endl;
+  std::cout << "Setting last update" << EngineImpl::get_clock() << std::endl;
+  std::cout << "Simgrid clock" << simgrid_get_clock() << std::endl;
+  std::cout << "--------------------------------------------------------------" << std::endl;
 }
 
 } // namespace simgrid::kernel::resource
