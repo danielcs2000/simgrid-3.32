@@ -1,0 +1,4 @@
+smpirun -np 2 -platform ./platform/test_circuit_switch.xml -hostfile ./host/hostfile_4 --cfg=smpi/privatization:1 --cfg=tracing:yes --cfg=tracing/filename:output_traces/resource.trace --cfg=tracing/smpi:yes --cfg=tracing/categorized:yes --cfg=tracing/uncategorized:yes --cfg=surf/precision:1e-9 --cfg=network/model:SMPI --cfg=smpi/tmpdir:/tmp --cfg=tracing/smpi/internals:yes   ./ping_pong.x
+smpirun -np 2 -platform ./platform/circuit_2.xml -hostfile ./host/hostfile_4 --cfg=smpi/privatization:1 --cfg=tracing:yes --cfg=tracing/filename:output_traces/resource.trace --cfg=tracing/smpi:yes --cfg=tracing/categorized:yes --cfg=tracing/uncategorized:yes --cfg=surf/precision:1e-9 --cfg=network/model:SMPI --cfg=smpi/tmpdir:/tmp --cfg=tracing/smpi/internals:yes --cfg=tracing/smpi/format:Paje --cfg=tracing/smpi/format/ti-one-file:1   ./ping_pong.x
+
+make smpimain && make install
