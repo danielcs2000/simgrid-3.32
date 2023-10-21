@@ -6,9 +6,24 @@ from enum import Enum
 import math
 import threading
 import numpy as np
+from decimal import Decimal
+import requests
 
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+
+
+PREDICTION_API_URL = "https://polite-gently-koala.ngrok-free.app/predict"
+
+def do_prediction(array: List[float], output_len: int=1):
+    assert len(array)
+    body = {
+        "output_len": output_len,
+        "data": array
+    }
+    response = requests.post(PREDICTION_API_URL, json=body)
+    content = response.json()
+    return content["prediction"]
 
 app = Flask(__name__)
 app.debug = False
@@ -21,9 +36,14 @@ LAST_END_LINK_TIME = {}
 START_LINK_TIMESTAMP_TIMES = {}
 START_LINK_CUMULATIVE_VALUE = {}
 
+# Prediction cache
+LAST_PREDICTION_INPUT = {}
+LAST_PREDICTION_VALUE = {}
+
 # Configs
 
-STEP = 0.2
+PREDICTION_OUTPUT_LEN = 3
+STEP = 0.2 # in seconds
 N_LINKS = 4
 
 LINK_DATA = {}
@@ -41,14 +61,31 @@ class Event(BaseModel):
     value: Optional[float] = None
 
 
+class Segment(BaseModel):
+    start_timestamp: float
+    end_timestamp: float
+    value: float
+
+def aggregated_value(start, end, segments: List[Segment]) -> float:
+    overlapping_segments = []
+    for segment in segments:
+        if not (end < segment.start_timestamp or start > segment.end_timestamp):
+            overlapping_segments.append(segment)
+    
+    value = 0.0
+    for segment in overlapping_segments:
+        max_from = max(segment.start_timestamp, start)
+        min_to = min(segment.end_timestamp, end)
+        
+        value += (min_to - max_from) * segment.value
+
+    return value
+
+
 def build_data_from_events(events: List[Event]):
     """
     Build x_list amd y_list from events, its assumed that all events are from only 1 link
     """
-    class Segment(BaseModel):
-        from_idx: int
-        to_idx: int
-        value: float
     
     global STEP
     if len(events) == 0:
@@ -67,42 +104,46 @@ def build_data_from_events(events: List[Event]):
     value = None
     segments = []
     segment = Segment(
-        from_idx=-1,
-        to_idx=-1,
+        start_timestamp=-1.0,
+        end_timestamp=-1.0,
         value=-1.0
     )
+    
     for event in events:
-        timestamp = event.timestamp
-        idx = int(math.ceil(timestamp / STEP)) - 1
-        value = event.value
 
         if event.type == EventType.START_LINK:
-            segment.from_idx = idx
-            segment.value = value
+            segment.start_timestamp = event.timestamp
+            segment.value = event.value
         
         if event.type == EventType.END_LINK:
-            segment.to_idx = idx
+            segment.end_timestamp = event.timestamp
             segments.append(segment)
 
             segment = Segment(
-                from_idx=-1,
-                to_idx=-1,
+                start_timestamp=-1.0,
+                end_timestamp=-1.0,
                 value=-1.0
             )
-    
-    if segment.from_idx != -1:
+
+    if segment.start_timestamp != -1.0:
         last_event = events[-1]
         timestamp = last_event.timestamp
-        idx = int(math.ceil(timestamp / STEP)) - 1
-        segment.to_idx = idx
+        segment.end_timestamp = timestamp
         segments.append(segment)
 
-    for segment in segments:
-        from_idx = segment.from_idx
-        to_idx = segment.to_idx
+    for i in range(total_bars):
+        start = Decimal(str(i)) * Decimal(str(STEP))
+        end = Decimal(str(i +1)) * Decimal(str(STEP))
+        value = aggregated_value(float(start),float(end), segments)
+        y_list[i] = value
+        
 
-        for i in range(from_idx, to_idx + 1):
-            y_list[i] = segment.value
+    # for segment in segments:
+    #     from_idx = segment.from_idx
+    #     to_idx = segment.to_idx
+
+    #     for i in range(from_idx, to_idx + 1):
+    #         y_list[i] = segment.value
 
     assert len(x_list), len(y_list)
     return x_list, y_list
@@ -132,32 +173,35 @@ def build_link_data():
     global LINK_DATA
     for link_name in LINK_DATA:
         events = LINK_DATA[link_name]
+        print("-"*50)
         x_list, y_list = build_data_from_events(events=events)
         print("-"*50)
-        print(link_name)
-        print(x_list)
-        print(y_list)
-        print("-"*50)
+        # print(link_name)
+        # print(x_list)
+        # print(y_list)
+        
 
-def build_plot(i):
-    # Clear the existing plot
-    plt.clf()
+# def build_plot(i):
+#     # Clear the existing plot
+#     plt.clf()
+#     # fig, axs = plt.subplots(N_LINKS, 1, figsize=(8, 6))
 
-    bar_width = 0.15
-    link_idx = 0
-    for link_name in LINK_DATA:
-        # if link_name != "link0":
-        #     continue
+#     bar_width = 0.15
+#     link_idx = 0
+#     for link_name in LINK_DATA:
+#         # if link_name != "link0":
+#         #     continue
 
-        events = LINK_DATA[link_name]
-        x_list, y_list = build_data_from_events(events=events)
-        plt.bar(np.array(x_list) + link_idx * bar_width, y_list, width=bar_width, label=f"{link_name} througput with step of {STEP} seconds")
-        plt.xlabel("X-Axis")
-        plt.ylabel("Y-Axis")
-        plt.legend()
-        plt.xticks(rotation=45)
+#         events = LINK_DATA[link_name]
+#         x_list, y_list = build_data_from_events(events=events)
+#         plt.bar(np.array(x_list) + link_idx * bar_width, y_list, width=bar_width, label=f"{link_name} througput with step of {STEP} seconds")
+#         plt.xlabel("X-Axis")
+#         plt.ylabel("Y-Axis")
+#         plt.legend()
+#         plt.xticks(rotation=45)
 
-        link_idx += 1
+#         link_idx += 1
+
 
 def handle_sync_event(timestamp_seconds:float):
     print("Handling [SYNC] event")
@@ -185,8 +229,72 @@ def handle_sync_event(timestamp_seconds:float):
 
 
 def plot_in_thread():
-    ani = FuncAnimation(plt.gcf(), build_plot, interval=1000)  # Update every 1 second (adjust as needed)
+    fig, axs = plt.subplots(N_LINKS)
+
+    def init():
+        link_name = "link name"
+        fig.suptitle('Througplot over time')
+        for ax in axs:
+            ax.bar([], [], label=f"{link_name} througput with step of {STEP} seconds", color='blue')
+            ax.bar([], [], label=f"{link_name} througput with step of {STEP} seconds", color='orange')
+            ax.set_xlabel("X-Axis")
+            ax.set_ylabel("Y-Axis")
+    
+    def make_prediction(x_list, y_list, link_name):
+        if len(x_list) < 20:
+            return [], []
+        input_data = y_list[-20:]
+        last_prediction_input = LAST_PREDICTION_INPUT.get(link_name, [])
+
+        if last_prediction_input == input_data:
+            y_prediction = LAST_PREDICTION_VALUE.get(link_name, [])
+        else:
+            y_prediction = do_prediction(input_data, output_len=PREDICTION_OUTPUT_LEN)
+
+        last_x_value = x_list[-1]
+        x_prediction = [last_x_value + (i + 1)*STEP for i in range(len(y_prediction))]
+
+        LAST_PREDICTION_INPUT[link_name] = input_data
+        LAST_PREDICTION_VALUE[link_name] = y_prediction
+
+        return x_prediction, y_prediction
+
+    def build_plot(i):
+        # Clear the existing plot
+        # plt.clf()
+        print("Building plot")
+        bar_width = STEP
+        link_idx = 0
+        for link_name in LINK_DATA:
+            # if link_name != "link0":
+            #     continue
+            ax = axs[link_idx]
+            events = LINK_DATA[link_name]
+            x_list, y_list = build_data_from_events(events=events)
+            x_predict, y_predict = make_prediction(x_list, y_list, link_name)
+            # print(x_list, y_list)
+            # x_list = np.array(range(10))
+            # y_list = np.sin(x_list ** 2)
+            ax.clear()
+            ax.set_xlabel("Time ")
+            ax.set_ylabel("Througplot")
+
+            x_list = np.array(x_list)
+            y_list = np.array(y_list)
+            x_predict = np.array(x_predict)
+            y_predict = np.array(y_predict)
+
+
+            ax.bar(x_list + STEP/2, y_list, width=bar_width, label=f"{link_name} througput with step of {STEP} seconds", color='blue')
+            ax.bar(x_predict + STEP/2, y_predict, width=bar_width, label=f"{link_name} througput prediction with step of {STEP} seconds", color='orange')
+            ax.legend()
+            # ax.set_xticks(rotation=45)
+
+            link_idx += 1
+
+    _ = FuncAnimation(fig, build_plot, interval=2000, init_func=init)
     # Show the plot
+    plt.tight_layout()
     plt.show()
 
 def find_start_link_event_idx(
@@ -314,6 +422,8 @@ def handle_simgrid_events():
 
 if __name__ == '__main__':
     setup()
+    input_data = [0.3]* 20
     plot_thread = threading.Thread(target=plot_in_thread)
     plot_thread.start()
     app.run(debug=True)
+
