@@ -1,3 +1,0 @@
-$ ${bindir:=.}/context-defaults
-> [ker_context/VERBOSE] Using raw contexts. Because the glibc is just not good enough for us.
-> [ker_context/VERBOSE] Creating a context of stack 8Mb

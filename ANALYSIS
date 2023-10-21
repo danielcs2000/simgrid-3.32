@@ -1,0 +1,388 @@
+mpirun -np 2 -platform ./platform/test_circuit_switch.xml -hostfile ./host/hostfile_4 --cfg=smpi/privatization:1 --cfg=tracing:yes --cfg=tracing/filename:output_traces/resource.trace --cfg=tracing/smpi:yes --cfg=tracing/categorized:yes --cfg=tracing/uncategorized:yes --cfg=surf/precision:1e-9 --cfg=network/model:SMPI --cfg=smpi/tmpdir:/tmp --cfg=tracing/smpi/internals:yes --cfg=tracing/smpi/format:TI --cfg=tracing/smpi/format/ti-one-file:1   ./ping_pong.x
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/privatization' to '1'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/np' to '2'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/hostfile' to './host/hostfile_4'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'surf/precision' to '1e-9'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'network/model' to 'SMPI'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/privatization' to '1'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'tracing' to 'yes'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'tracing/filename' to 'output_traces/resource.trace'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'tracing/smpi' to 'yes'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'tracing/categorized' to 'yes'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'tracing/uncategorized' to 'yes'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'surf/precision' to '1e-9'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'network/model' to 'SMPI'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/tmpdir' to '/tmp'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'tracing/smpi/internals' to 'yes'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'tracing/smpi/format' to 'TI'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'tracing/smpi/format/ti-one-file' to '1'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/tmpdir' to '/tmp'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'network/bandwidth-factor' to '1'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'network/crosstraffic' to '0'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'network/latency-factor' to '1'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [xbt_cfg/INFO] Configuration change: Set 'smpi/simulate-computation' to 'yes'
+[0.000000] [xbt_cfg/INFO] Este mensaje es custom
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=0)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=1)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=2)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=3)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=4)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=5)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=6)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=7)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=8)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=9)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=0.000000, buffersize=10)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=0.000000, buffersize=11)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=0.000000, buffersize=12)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=0.000000, buffersize=13)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=0.000000, buffersize=14)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=0.000000, buffersize=15)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=0.000000, buffersize=16)
+[0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=0.000000, buffersize=17)
+[0.000000] [instr_paje_trace/INFO] [BUFFER] timestamp=0.000000
+ topology 5 0 topology 2 0 topology 5 1 topology 3 1 topology 5 2 topology 4 2 topology 1 3 topology 5 3 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 1.000000 topology 5 0 topology 2 0 topology 5 1 topology 3 1 topology 5 2 topology 4 2 topology 1 3 topology 5 3
+Curl request failed: Couldn't connect to server
+[0.000000] [smpi_config/INFO] You did not set the power of the host running the simulation.  The timings will certainly not be accurate.  Use the option "--cfg=smpi/host-speed:<flops>" to set its value.  Check https://simgrid.org/doc/latest/Configuring_SimGrid.html#automatic-benchmarking-of-smpi-code for more information.
+[host0:0:(1) 0.000000] [smpi_kernel/INFO] Tomar argumentos
+[host1:1:(2) 0.000000] [smpi_kernel/INFO] Tomar argumentos
+[host0:0:(1) 0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=0.000000, buffersize=0)
+[host0:0:(1) 0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=0.000000, buffersize=1)
+[host1:1:(2) 0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=0.000000, buffersize=2)
+[host1:1:(2) 0.000000] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=0.000000, buffersize=3)
+[0.033400] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=4)
+[0.033400] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=0.000000, buffersize=5)
+[0.033400] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=0.033400, buffersize=6)
+[0.033400] [instr_paje_trace/INFO] [BUFFER] timestamp=0.033400
+0 init1 init0 init1 init 0.000000 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 0.033400] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=0.033400, buffersize=0)
+[0.301740] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=0.000000, buffersize=1)
+[0.301740] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=0.000000, buffersize=2)
+[0.301740] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=0.301740, buffersize=3)
+[0.301740] [instr_paje_trace/INFO] [BUFFER] timestamp=0.301740
+1 recv 0 0 1 1 0.000000 1.0000001 recv 0 0 1 1 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 0.301740] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=0.301740, buffersize=0)
+[host0:0:(1) 0.301740] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=0.301740, buffersize=1)
+[host0:0:(1) 0.301740] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=0.301740, buffersize=2)
+0 sent and incremented ping_pong_count 1 to 1
+[0.399820] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=0.301740, buffersize=3)
+[0.399820] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=0.399820, buffersize=4)
+[0.399820] [instr_paje_trace/INFO] [BUFFER] timestamp=0.399820
+0 send 1 0 1 1 PTP 6 1_2_0_10 send 1 0 1 1 PTP 6 1_2_0_1 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 0.399820] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=0.399820, buffersize=0)
+[2.316410] [instr_paje_trace/INFO] [BUFFER] timestamp=2.316410
+0 recv 1 0 1 10 recv 1 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.8120842.3164124.628
+[26.944404] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=8, timestamp=2.316410, buffersize=0)
+[26.944404] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=2.316410, buffersize=1)
+[26.944404] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=26.944404, buffersize=2)
+[26.944404] [instr_paje_trace/INFO] [BUFFER] timestamp=26.944404
+ 0.000000 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 26.944404] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=26.944404, buffersize=0)
+[host1:1:(2) 26.944404] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=26.944404, buffersize=1)
+1 received ping_pong_count 1 from 0
+[27.041924] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=26.944404, buffersize=2)
+[27.041924] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=27.041924, buffersize=3)
+[27.041924] [instr_paje_trace/INFO] [BUFFER] timestamp=27.041924
+ PTP 7 1_2_0_1 PTP 7 1_2_0_1 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 27.041924] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=27.041924, buffersize=0)
+[host1:1:(2) 27.041924] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=27.041924, buffersize=1)
+[host1:1:(2) 27.041924] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=27.041924, buffersize=2)
+1 sent and incremented ping_pong_count 2 to 0
+[27.094544] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=27.041924, buffersize=3)
+[27.094544] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=27.094544, buffersize=4)
+[27.094544] [instr_paje_trace/INFO] [BUFFER] timestamp=27.094544
+1 send 0 0 1 1 PTP 7 2_1_0_21 send 0 0 1 1 PTP 7 2_1_0_2 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 27.094544] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=27.094544, buffersize=0)
+[29.056594] [instr_paje_trace/INFO] [BUFFER] timestamp=29.056594
+1 recv 0 0 1 11 recv 0 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.81208429.056624.628
+[53.684588] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=29.056594, buffersize=0)
+[53.684588] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=53.684588, buffersize=1)
+[53.684588] [instr_paje_trace/INFO] [BUFFER] timestamp=53.684588
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 53.684588] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=53.684588, buffersize=0)
+[host0:0:(1) 53.684588] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=53.684588, buffersize=1)
+0 received ping_pong_count 2 from 1
+[53.736968] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=53.684588, buffersize=2)
+[53.736968] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=53.736968, buffersize=3)
+[53.736968] [instr_paje_trace/INFO] [BUFFER] timestamp=53.736968
+ PTP 6 2_1_0_2 PTP 6 2_1_0_2 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 53.736968] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=53.736968, buffersize=0)
+[host0:0:(1) 53.736968] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=53.736968, buffersize=1)
+[host0:0:(1) 53.736968] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=53.736968, buffersize=2)
+0 sent and incremented ping_pong_count 3 to 1
+[53.787108] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=53.736968, buffersize=3)
+[53.787108] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=53.787108, buffersize=4)
+[53.787108] [instr_paje_trace/INFO] [BUFFER] timestamp=53.787108
+0 send 1 0 1 1 PTP 6 1_2_0_30 send 1 0 1 1 PTP 6 1_2_0_3 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 53.787108] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=53.787108, buffersize=0)
+[55.751638] [instr_paje_trace/INFO] [BUFFER] timestamp=55.751638
+0 recv 1 0 1 10 recv 1 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.81208455.751624.628
+[80.379632] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=55.751638, buffersize=0)
+[80.379632] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=80.379632, buffersize=1)
+[80.379632] [instr_paje_trace/INFO] [BUFFER] timestamp=80.379632
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 80.379632] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=80.379632, buffersize=0)
+[host1:1:(2) 80.379632] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=80.379632, buffersize=1)
+1 received ping_pong_count 3 from 0
+[80.433532] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=80.379632, buffersize=2)
+[80.433532] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=80.433532, buffersize=3)
+[80.433532] [instr_paje_trace/INFO] [BUFFER] timestamp=80.433532
+ PTP 7 1_2_0_3 PTP 7 1_2_0_3 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 80.433532] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=80.433532, buffersize=0)
+[host1:1:(2) 80.433532] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=80.433532, buffersize=1)
+[host1:1:(2) 80.433532] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=80.433532, buffersize=2)
+1 sent and incremented ping_pong_count 4 to 0
+[80.481472] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=80.433532, buffersize=3)
+[80.481472] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=80.481472, buffersize=4)
+[80.481472] [instr_paje_trace/INFO] [BUFFER] timestamp=80.481472
+1 send 0 0 1 1 PTP 7 2_1_0_41 send 0 0 1 1 PTP 7 2_1_0_4 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 80.481472] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=80.481472, buffersize=0)
+[82.448202] [instr_paje_trace/INFO] [BUFFER] timestamp=82.448202
+1 recv 0 0 1 11 recv 0 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.81208482.448224.628
+[107.076197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=82.448202, buffersize=0)
+[107.076197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=107.076197, buffersize=1)
+[107.076197] [instr_paje_trace/INFO] [BUFFER] timestamp=107.076197
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 107.076197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=107.076197, buffersize=0)
+[host0:0:(1) 107.076197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=107.076197, buffersize=1)
+0 received ping_pong_count 4 from 1
+[107.130517] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=107.076197, buffersize=2)
+[107.130517] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=107.130517, buffersize=3)
+[107.130517] [instr_paje_trace/INFO] [BUFFER] timestamp=107.130517
+ PTP 6 2_1_0_4 PTP 6 2_1_0_4 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 107.130517] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=107.130517, buffersize=0)
+[host0:0:(1) 107.130517] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=107.130517, buffersize=1)
+[host0:0:(1) 107.130517] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=107.130517, buffersize=2)
+0 sent and incremented ping_pong_count 5 to 1
+[107.179817] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=107.130517, buffersize=3)
+[107.179817] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=107.179817, buffersize=4)
+[107.179817] [instr_paje_trace/INFO] [BUFFER] timestamp=107.179817
+0 send 1 0 1 1 PTP 6 1_2_0_50 send 1 0 1 1 PTP 6 1_2_0_5 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 107.179817] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=107.179817, buffersize=0)
+[109.145187] [instr_paje_trace/INFO] [BUFFER] timestamp=109.145187
+0 recv 1 0 1 10 recv 1 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.812084109.14524.628
+[133.773181] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=109.145187, buffersize=0)
+[133.773181] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=133.773181, buffersize=1)
+[133.773181] [instr_paje_trace/INFO] [BUFFER] timestamp=133.773181
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 133.773181] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=133.773181, buffersize=0)
+[host1:1:(2) 133.773181] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=133.773181, buffersize=1)
+1 received ping_pong_count 5 from 0
+[133.826561] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=133.773181, buffersize=2)
+[133.826561] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=133.826561, buffersize=3)
+[133.826561] [instr_paje_trace/INFO] [BUFFER] timestamp=133.826561
+ PTP 7 1_2_0_5 PTP 7 1_2_0_5 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 133.826561] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=133.826561, buffersize=0)
+[host1:1:(2) 133.826561] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=133.826561, buffersize=1)
+[host1:1:(2) 133.826561] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=133.826561, buffersize=2)
+1 sent and incremented ping_pong_count 6 to 0
+[133.874821] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=133.826561, buffersize=3)
+[133.874821] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=133.874821, buffersize=4)
+[133.874821] [instr_paje_trace/INFO] [BUFFER] timestamp=133.874821
+1 send 0 0 1 1 PTP 7 2_1_0_61 send 0 0 1 1 PTP 7 2_1_0_6 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 133.874821] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=133.874821, buffersize=0)
+[135.841231] [instr_paje_trace/INFO] [BUFFER] timestamp=135.841231
+1 recv 0 0 1 11 recv 0 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.812084135.84124.628
+[160.469225] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=135.841231, buffersize=0)
+[160.469225] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=160.469225, buffersize=1)
+[160.469225] [instr_paje_trace/INFO] [BUFFER] timestamp=160.469225
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 160.469225] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=160.469225, buffersize=0)
+[host0:0:(1) 160.469225] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=160.469225, buffersize=1)
+0 received ping_pong_count 6 from 1
+[160.519825] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=160.469225, buffersize=2)
+[160.519825] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=160.519825, buffersize=3)
+[160.519825] [instr_paje_trace/INFO] [BUFFER] timestamp=160.519825
+ PTP 6 2_1_0_6 PTP 6 2_1_0_6 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 160.519825] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=160.519825, buffersize=0)
+[host0:0:(1) 160.519825] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=160.519825, buffersize=1)
+[host0:0:(1) 160.519825] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=160.519825, buffersize=2)
+0 sent and incremented ping_pong_count 7 to 1
+[160.567805] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=160.519825, buffersize=3)
+[160.567805] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=160.567805, buffersize=4)
+[160.567805] [instr_paje_trace/INFO] [BUFFER] timestamp=160.567805
+0 send 1 0 1 1 PTP 6 1_2_0_70 send 1 0 1 1 PTP 6 1_2_0_7 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 160.567805] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=160.567805, buffersize=0)
+[162.534495] [instr_paje_trace/INFO] [BUFFER] timestamp=162.534495
+0 recv 1 0 1 10 recv 1 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.812084162.53424.628
+[187.162489] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=162.534495, buffersize=0)
+[187.162489] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=187.162489, buffersize=1)
+[187.162489] [instr_paje_trace/INFO] [BUFFER] timestamp=187.162489
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 187.162489] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=187.162489, buffersize=0)
+[host1:1:(2) 187.162489] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=187.162489, buffersize=1)
+1 received ping_pong_count 7 from 0
+[187.212129] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=187.162489, buffersize=2)
+[187.212129] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=187.212129, buffersize=3)
+[187.212129] [instr_paje_trace/INFO] [BUFFER] timestamp=187.212129
+ PTP 7 1_2_0_7 PTP 7 1_2_0_7 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 187.212129] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=187.212129, buffersize=0)
+[host1:1:(2) 187.212129] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=187.212129, buffersize=1)
+[host1:1:(2) 187.212129] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=187.212129, buffersize=2)
+1 sent and incremented ping_pong_count 8 to 0
+[187.260949] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=187.212129, buffersize=3)
+[187.260949] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=187.260949, buffersize=4)
+[187.260949] [instr_paje_trace/INFO] [BUFFER] timestamp=187.260949
+1 send 0 0 1 1 PTP 7 2_1_0_81 send 0 0 1 1 PTP 7 2_1_0_8 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 187.260949] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=187.260949, buffersize=0)
+[189.226799] [instr_paje_trace/INFO] [BUFFER] timestamp=189.226799
+1 recv 0 0 1 11 recv 0 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.812084189.22724.628
+[213.854793] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=189.226799, buffersize=0)
+[213.854793] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=213.854793, buffersize=1)
+[213.854793] [instr_paje_trace/INFO] [BUFFER] timestamp=213.854793
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 213.854793] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=213.854793, buffersize=0)
+[host0:0:(1) 213.854793] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=213.854793, buffersize=1)
+0 received ping_pong_count 8 from 1
+[213.903613] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=213.854793, buffersize=2)
+[213.903613] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=213.903613, buffersize=3)
+[213.903613] [instr_paje_trace/INFO] [BUFFER] timestamp=213.903613
+ PTP 6 2_1_0_8 PTP 6 2_1_0_8 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 213.903613] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=213.903613, buffersize=0)
+[host0:0:(1) 213.903613] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=213.903613, buffersize=1)
+[host0:0:(1) 213.903613] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=213.903613, buffersize=2)
+0 sent and incremented ping_pong_count 9 to 1
+[213.951633] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=213.903613, buffersize=3)
+[213.951633] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=213.951633, buffersize=4)
+[213.951633] [instr_paje_trace/INFO] [BUFFER] timestamp=213.951633
+0 send 1 0 1 1 PTP 6 1_2_0_90 send 1 0 1 1 PTP 6 1_2_0_9 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 213.951633] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=213.951633, buffersize=0)
+[215.918283] [instr_paje_trace/INFO] [BUFFER] timestamp=215.918283
+0 recv 1 0 1 10 recv 1 0 1 1
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.812084215.91824.628
+[240.546277] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=215.918283, buffersize=0)
+[240.546277] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=240.546277, buffersize=1)
+[240.546277] [instr_paje_trace/INFO] [BUFFER] timestamp=240.546277
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 240.546277] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=240.546277, buffersize=0)
+[host1:1:(2) 240.546277] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=240.546277, buffersize=1)
+1 received ping_pong_count 9 from 0
+[240.597197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=240.546277, buffersize=2)
+[240.597197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=240.597197, buffersize=3)
+[240.597197] [instr_paje_trace/INFO] [BUFFER] timestamp=240.597197
+ PTP 7 1_2_0_9 PTP 7 1_2_0_9 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 240.597197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=240.597197, buffersize=0)
+[host1:1:(2) 240.597197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=15, timestamp=240.597197, buffersize=1)
+[host1:1:(2) 240.597197] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=240.597197, buffersize=2)
+1 sent and incremented ping_pong_count 10 to 0
+[240.665797] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=240.597197, buffersize=3)
+[240.665797] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=240.665797, buffersize=4)
+[240.665797] [instr_paje_trace/INFO] [BUFFER] timestamp=240.665797
+1 send 0 0 1 1 PTP 7 2_1_0_101 send 0 0 1 1 PTP 7 2_1_0_10 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host1:1:(2) 240.665797] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=240.665797, buffersize=0)
+[host1:1:(2) 240.665797] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=240.665797, buffersize=1)
+[host1:1:(2) 240.665797] [instr_paje_trace/INFO] [BUFFER] timestamp=240.665797
+1 finalize1 finalize
+Curl request failed: Couldn't connect to server
+[242.611867] [instr_paje_trace/INFO] [BUFFER] timestamp=242.611867
+
+Curl request failed: Couldn't connect to server
+[LINK CHANGED]link00.812084242.61224.628
+[267.239861] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=242.611867, buffersize=0)
+[267.239861] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=267.239861, buffersize=1)
+[267.239861] [instr_paje_trace/INFO] [BUFFER] timestamp=267.239861
+ 0.812084 0.812084
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 267.239861] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=16, timestamp=267.239861, buffersize=0)
+[host0:0:(1) 267.239861] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=267.239861, buffersize=1)
+0 received ping_pong_count 10 from 1
+[267.291141] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=9, timestamp=267.239861, buffersize=2)
+[267.291141] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=10, timestamp=267.291141, buffersize=3)
+[267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+ PTP 6 2_1_0_10 PTP 6 2_1_0_10 1.000000 1.000000
+Curl request failed: Couldn't connect to server
+[host0:0:(1) 267.291141] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=12, timestamp=267.291141, buffersize=0)
+[host0:0:(1) 267.291141] [instr_paje_trace/INFO] insert_into_buffer: insert event_type=13, timestamp=267.291141, buffersize=1)
+[host0:0:(1) 267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+0 finalize0 finalize
+Curl request failed: Couldn't connect to server
+[267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+
+Curl request failed: Couldn't connect to server
+[267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+
+Curl request failed: Couldn't connect to server
+[267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+
+Curl request failed: Couldn't connect to server
+[267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+
+Curl request failed: Couldn't connect to server
+[267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+
+Curl request failed: Couldn't connect to server
+[267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+
+Curl request failed: Couldn't connect to server
+[267.291141] [instr_paje_trace/INFO] [BUFFER] timestamp=267.291141
+
+Curl request failed: Couldn't connect to server
+daniel@daniel-B560M-GAMING-HD:~/Documents/Tesis/s

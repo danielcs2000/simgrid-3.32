@@ -1,0 +1,5 @@
+cmake -DCMAKE_INSTALL_PREFIX=/home/daniel/Documents/Tesis/simgrid-3.32/installed -DBoost_INCLUDE_DIR:PATH=/home/daniel/Documents/Tesis/simgrid-3.32/boost/boost_1_80_0/installed/include
+
+make clean
+make
+make install

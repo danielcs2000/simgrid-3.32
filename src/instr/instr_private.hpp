@@ -49,6 +49,7 @@ void define_callbacks();
 void resource_set_utilization(const char* type, const char* name, const char* resource, const std::string& category,
                               double value, double now, double delta);
 void dump_buffer(bool force);
+void send_link_data();
 
 class TIData {
   std::string name_;

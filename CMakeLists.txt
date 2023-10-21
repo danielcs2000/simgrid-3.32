@@ -185,6 +185,11 @@ endif()
 # library dependency cannot start with a space (CMP0004), so initialize it with something that is never deactivated.
 set(SIMGRID_DEP "-lm")
 
+##  For curl library
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
+set(SIMGRID_DEP "${SIMGRID_DEP} ${CURL_LIBRARIES}")
+
 ### Determine the assembly flavor that we need today
 set(HAVE_RAW_CONTEXTS 0)
 include(CMakeDetermineSystem)
